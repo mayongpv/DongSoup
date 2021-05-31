@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class NavMove : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public Transform follower;
 
+    public int myInt = -1;
 
     void Start()
     {

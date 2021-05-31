@@ -39,10 +39,9 @@ public class RecordMouseEvent : MonoBehaviour
 
         layerTest1 = checkLayerMask; 
         layerTest2 = LayerMask.NameToLayer("Ground");
-        layerTest3 = 1 << checkLayerMask;
+        layerTest3 = 1 << layerTest2;
 
-        RaycastHit hitData;
-        if (Physics.Raycast(ray, out hitData, 1000, checkLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit hitData, 1000, checkLayerMask))
         {
             transform.position = hitData.point;
         }
