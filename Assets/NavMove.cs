@@ -21,7 +21,7 @@ public class NavMove : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hiteData, 1000, layer)) //인라인 변수 선언
             {
-                agent.destination = hiteData.point;
+                //agent.destination = hiteData.point;
             }
         }
     }
