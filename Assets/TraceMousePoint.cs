@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TraceMousePoint : MonoBehaviour
 {
     public LayerMask layer;
@@ -29,15 +28,12 @@ public class TraceMousePoint : MonoBehaviour
             {
                 isHit = false;
             }
-
-           
         }
     }
-    //public float rayLength = 1000f;
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawRay(ray.origin, ray.direction * rayLength);
-    //}
+    public float rayLength = 1000f;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(ray.origin, ray.direction * rayLength);
+    }
 }
