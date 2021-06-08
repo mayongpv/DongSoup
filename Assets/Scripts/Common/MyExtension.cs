@@ -9,6 +9,62 @@ using UnityEngine;
 /// </summary>
 static public class MyExtension
 {
+    public static T AddOrGetComponent<T>(this Transform tr) where T : Component
+    {
+        T t = tr.GetComponent<T>();
+        if (t == null)
+            t = tr.gameObject.AddComponent<T>();
+
+        return t;
+    }
+
+    public static T AddOrGetComponent<T>(this GameObject tr) where T : Component
+    {
+        T t = tr.GetComponent<T>();
+        if (t == null)
+            t = tr.AddComponent<T>();
+
+        return t;
+    }
+    static public string ShortName(this System.Type type)
+    {
+        string[] tempName = type.ToString().Split('.');
+        string result = tempName[tempName.Length - 1];
+
+        return result;
+    }
+
+    /// <summary>
+    /// 스트링에서 태그(<b>, <color>,...)를 제외한 길이를 반환한다
+    /// <b>test</b> // 실제 길이 4, 글자길이 11(태그길이7), 
+    /// </summary>
+    /// <param name="richText">[태그가 포함된] 원본 문자열</param>
+    /// <returns>태그가 제외된 문자열의 길이</returns>
+    public static int VisibleTextLength(this string richText)
+    {
+        int len = 0;
+        bool inTag = false;
+
+        foreach (var ch in richText)
+        {
+            if (ch == '<')
+            {
+                inTag = true;
+                continue;
+            }
+            else if (ch == '>')
+            {
+                inTag = false;
+            }
+            else if (!inTag)
+            {
+                len++;
+            }
+        }
+
+        return len;
+    }
+
     /// <summary>
     /// 특정 방향에서 y축을 기준으로 회전한 방향 벡터 반환
     /// </summary>
@@ -38,6 +94,7 @@ static public class MyExtension
         // 부모가 있으면 부모 경로와 경로 구분자를 넣는다.
         StringBuilder sb = new StringBuilder();
         GetParentPath(t, sb);
+        sb.Append(t.name);
         return sb.ToString();
 
         void GetParentPath(Transform tr, StringBuilder sb)
@@ -47,10 +104,8 @@ static public class MyExtension
                 GetParentPath(tr.parent, sb);
 
                 sb.Append(tr.parent.name);
-                sb.Append(System.IO.Path.DirectorySeparatorChar);
+                sb.Append('/'); // 유니티에서의 경로, (System.IO.Path.DirectorySeparatorChar는 OS의 디렉토리 경로 구분자)
             }
-
-            sb.Append(tr.name);
         }
     }
 }
