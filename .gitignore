@@ -64,3 +64,5 @@ crashlytics-build.properties
 /Assets/Scenes
 /UserSettings
 /.vsconfig
+/Assets/com.unity.uiextensions
+/Assets/Object/JMO Assets
