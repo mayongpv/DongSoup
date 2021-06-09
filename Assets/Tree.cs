@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,10 +34,11 @@ public class Tree : MonoBehaviour, IClick
         if (other.CompareTag("Player"))
         {
             isInPlayer = true;
-            Animator[] animators = GetComponentsInChildren<Animator>();
+            Animator[] animators = GetComponentsInChildren<Animator>(); //children으로 있는 애들 중에 Animator가 있는 애들을 불러내는 것 / 리스트이기 때문에 .play가 바로 안된다. 
+            //리스트를 for문으로 돌리기
             for (int i = 0; i < animators.Length; i++)
             {
-                animators[i].Play("SwingLeaf", 0, 0);
+                animators[i].Play("SwingLeaf", 0, 0); //00-> 처음부터 재생
             }
         }
     }
