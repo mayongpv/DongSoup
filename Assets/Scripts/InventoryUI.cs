@@ -47,5 +47,12 @@ public class InventoryUI : MonoBehaviour
             var myItem = UserDataManager.instance.myItems[i];
             posItems[i].SetItem(myItem);
         }
+        // 손을 표시하자.
+        hand.position = posItems[0].transform.position;
     }
+    public Transform hand;
+
+
+
 }
+
