@@ -11,6 +11,14 @@ public class TalkUI : MonoBehaviour
     //위치이동 - 없음
     CanvasGroup canvasGroup; //2. 캔바스 그룹 : 변투명 만들어주기
 
+    //10. 이름표가 먼저 나타나고, 대화창은 뒤에 스케일 애니메이션으로 나타남.
+    public Transform bgTr;
+    //Tr = Transform
+    //go = GameObject
+    // 그리고 unity inspector에서 bgTr 드레그 해서 넣을거임
+
+
+
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>(); //3. Canvas Group을 사용하겠다.
@@ -22,8 +30,11 @@ public class TalkUI : MonoBehaviour
         //4. test 해볼거임. 키보드 누르면 Alpha가 작동하는지
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            canvasGroup.alpha = 0; //알파가 0. 즉, 안보인다는 의미.
-
+            //canvasGroup.alpha = 0; //알파가 0. 즉, 안보인다는 의미.
+            //bgTr/ 11. 내용 변경 : 스케일이 서서히 커지게 하자 Duration 시간 동안.
+            bgTr.localScale = Vector3.one * 0.1f;
+            bgTr.DOScale(new Vector3(1, 1, 1), duration); //원래 크기 = Vector.one
+            // Vector.one = new Vector(1, 1, 1)
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
