@@ -31,4 +31,11 @@ public class InventoryItem : MonoBehaviour
         itemIcon.sprite = sprite;
         itemIcon.SetNativeSize();
     }
+
+    internal void SetPos(float pos)
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.Play("InventoryPos", 0);
+        animator.speed = 0;
+    }
 }
